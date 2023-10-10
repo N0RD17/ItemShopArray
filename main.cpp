@@ -3,7 +3,7 @@
 #include <array>        // for std::array<T,N>
 #include <cstdint>      // for std::uint32_t
 #include <cctype>       // for std::tolower()
-#include <limits>	    // for std::numeric_limits
+#include <limits>	      // for std::numeric_limits
 
 // Handles invalid inputs
 void ignoreLine()
@@ -51,7 +51,7 @@ int main()
       // If std::cin goes into failure mode
       if(std::cin.fail())
       {
-         if(std::cin.eof())	// If stream was closed (CRTL+D in UNIX/LINUX)
+         if(std::cin.eof())	// If stream was closed(reached END_OF_FILE (CRTL+D) in UNIX/LINUX)
          {
             std::cout << "EXITED!" << std::endl;
             std::exit(0);	// Shut down the progran!
@@ -66,6 +66,7 @@ int main()
       if(answer == 'q')
       {
          std::cout << "************ EXITING SHOP ************" << '\n';
+         isRunning = 0;
          break;
       }
 
@@ -91,6 +92,7 @@ int main()
    return 0;
 }
 
+// Prints playerInventory array
 void printInventory(const std::array<int, numItems> &playerInventory)
 {
    std::cout << "Items in your inventory: " << '\n';
@@ -104,6 +106,7 @@ void printInventory(const std::array<int, numItems> &playerInventory)
    }
 }
 
+// prints shop array
 void printShop(const std::array<std::string_view, numItems> &ShopsItems)
 {
    std::uint32_t counter{ 1 };
@@ -119,7 +122,7 @@ void printShop(const std::array<std::string_view, numItems> &ShopsItems)
    std::cout << "-----------------------------------------------" << std::endl;
 }
 
-
+// Increment elements in playerInventory array based on selected itemShopStore
 void buyItems(std::array<int, numItems> &playerInventory)
 {
    size_t input = 0;
